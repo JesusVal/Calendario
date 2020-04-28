@@ -1,0 +1,29 @@
+{
+    "posts": [
+      { "id": 1, "title": "json-server", "author": "typicode" },
+      { "id": 2, "title": "json-server", "author": "typicode" }
+    ],
+    "comments": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "users": [
+      {"userid": 1, "user": "user1", "email": "em@il1.com", "password": "pass1", "token": "token1"}
+    ],
+    "data":[
+      {
+        "userid": 1, 
+        "data":[
+          {
+            "title": "Event Test1",
+            "start": "2020-04-03T13:00:00",
+            "end": "2020-04-03T14:00:00",
+            "extendedProps": {
+              "image": "https://i.imgur.com/bPQANEr.png",
+              "descripcion": "una descripcion de test",
+              "status": "pendiente"
+            }
+          }
+        ]
+      }
+    ]
+}

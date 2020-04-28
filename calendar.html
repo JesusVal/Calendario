@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario</title>
+
+    <!-- CSS API references -->
+    <link rel="stylesheet" href="./css/core.min.css">
+    <link rel="stylesheet" href="./css/daygrid.min.css">
+    <link rel="stylesheet" href="./css/timegrid.min.css">
+    <link rel="stylesheet" href="./css/list.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- JS API references -->
+    <script src="./js/core.min.js"></script>
+    <script src="./js/interaction.min.js"></script>
+    <script src="./js/daygrid.min.js"></script>
+    <script src="./js/timegrid.min.js"></script>
+    <script src="./js/list.min.js"></script>
+    <!-- JS handmade references --> 
+    <script src="./js/calendar.js"></script>
+
+    <style>
+      
+        #calendar {
+            /* width: 60%; */
+          /* max-width: 50%; */
+          margin: 0 auto;
+          /* height: 80%; */
+          /* width: auto; */
+        }
+        #table-content{
+            height: 100vh;
+            width: 100%;
+            /* width: 100vw; */
+            /* border: solid red 1px; */
+        }
+        /* #table_content td:nth-of-type(2){
+            border: solid red 2px;
+        } */
+        th,td{
+             border: solid red 3px;
+        }
+      
+      </style>
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Calendar.io</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Calendar<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <i class="fa fa-user" aria-hidden="true" id="navbaruser">User</i>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="Log.html" id="navbarlogin">Login</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="Sign.html" id="navbarsignin">Sign in</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mt-2 mt-lg-0" id="navbarlogout" hidden="true">
+                <li class="nav-item" >
+                    <a class="nav-link" href="#" onclick="logout()"";>Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- End NavBar -->
+
+    <table id="table-content">
+        <tr>
+            <td width="20%">Acciones</td>
+            <td rowspan="10" width="60%"> <div id="calendar"></div> </td>
+            <td width="20%"> Detalle</td>
+        </tr>
+        <tr>
+            <td>
+                <!-- <button>Agregar Evento</button>
+                <hr> -->
+                <input type="text" name="busqueda" id="busquedaEventosbtn" placeholder="Nombre de evento">
+                <button >Buscar</button>
+                <hr>
+                <p>Filtrar por:</p>
+                <!-- <input type="checkbox" name="" id=""> -->
+                <label><input type="checkbox" id="cboxstatus" value="status">Status</label><br>
+                <label><input type="checkbox" id="cboxdateinicio" value="dateinicio">Fecha de inicio: <br><input type="date" name="filtrodateinicio" id="filtrodateinicio"></label><br>
+                <label><input type="checkbox" id="cboxdatefin" value="datefin">Fecha de fin: <br><input type="date" name="filtrodatefin" id="filtrodatefin"></label><br>
+                <button>Filtrar</button>
+                <hr>
+                <button>Agregar Evento</button>
+            </td>
+            <td id="detail-content">
+            
+            </td>
+        </tr>
+        <tr>
+            <td>
+                
+            </td>
+            <td>lmmlmñolmñm</td>
+        </tr>
+    </table>
+
+    <!-- <div id="calendar"></div> -->
+
+    
+
+
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+      Launch
+    </button> -->
+    
+    <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar evento</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body">
+
+                    <label for="tituloagregar">Titulo:</label>
+                    <input type="text" id="tituloagregar">
+                    <hr>
+
+                    <label for="dateInicio">Fecha de inicio</label>
+                    <input type="date" id="dateInicioagregar"> <br>
+                    <label for="dateInicio">Hora de inicio</label>
+                    <input type="time" id="horaInicioagregar">
+                    <hr>
+
+                    <label for="dateInicio">Fecha de final</label>
+                    <input type="date" id="dateFinalagregar"> <br>
+                    <label for="dateInicio">Hora de final</label>
+                    <input type="time" id="horaFinalagregar">
+                    <hr>
+
+                    <label for="descripcionagregar">Descripcion</label>
+                    <input type="text" id="descripcionagregar">
+                    <hr>
+
+                    <p>Periodicidad:</p>
+                    <label><input type="checkbox" id="cboxperiodolunes" value="Lunes">Lu</label>
+                    <label><input type="checkbox" id="cboxperiodomartes" value="Martes">Ma</label>
+                    <label><input type="checkbox" id="cboxperiodomiercoles" value="Miercoles">Mi</label>
+                    <label><input type="checkbox" id="cboxperiodojueves" value="Jueves">Ju</label>
+                    <label><input type="checkbox" id="cboxperiodoviernes" value="Viernes">Vi</label>
+                    <label><input type="checkbox" id="cboxperiodosabado" value="Sabado">Sa</label>
+                    <label><input type="checkbox" id="cboxperiododomingo" value="Domingo">Do</label>
+                    <hr>
+
+                    <label for="urlagregar">Imagen(Url): </label>
+                    <input type="url" id="urlagregar">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="agregarbtnfechamodal">Agregar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="Footer">Calendar.io V0.2 2020</footer> 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
