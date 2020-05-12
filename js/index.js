@@ -5,7 +5,7 @@ fetch('https://daswc.herokuapp.com/api/user',
     headers: {
         'x-auth-user': 'token1'
     },
-    mode: 'cors'
+    mode: 'no-cors'
 }).then( res => res.json())
 .then( data => {
     console.log(data);
